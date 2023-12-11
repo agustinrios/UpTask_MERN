@@ -1,4 +1,5 @@
 import express from 'express';
+import checkAuth from "../middleware/checkAuth.js";
 import { 
   obtenerProyectos,
   nuevosProyectos,
@@ -7,9 +8,7 @@ import {
   eliminarProyectos,
   agregarColaborador,
   eliminarColaborador,
-  obtenerTareas,
 } from '../controllers/proyectoController.js';
-import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();
 
@@ -22,7 +21,6 @@ router.route("/:id")
   .put(checkAuth, editarProyectos)
   .delete(checkAuth, eliminarProyectos);
 
-router.get("/tareas/:id", checkAuth, obtenerTareas);
 router.post("/agregar-colaborador/:id", checkAuth, agregarColaborador);
 router.post("/eliminar-colaborador/:id", checkAuth, eliminarColaborador);
 

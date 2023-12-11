@@ -1,39 +1,41 @@
 import mongoose from 'mongoose';
 
-const proyectoSchema = mongoose.Schema({
-  nombre: {
-    type: String,
-    trim: true,
-    required: true
-  },
-  descripcion: {
-    type: String,
-    trim: true,
-    required: true
-  },
-  fechaEntrega: {
-    type: Date,
-    trim: Date.now(),
-  },
-  cliente: {
-    type: String,
-    trim: true,
-    required: true
-  },
-  creador: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Usuario"
-  },
-  colaboradores: [
-    {
+const proyectoSchema = mongoose.Schema(
+  {
+    nombre: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    descripcion: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    fechaEntrega: {
+      type: Date,
+      trim: Date.now(),
+    },
+    cliente: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    creador: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Usuario"
-    }
-  ],
-},
-{
-  timestamps: true,
-});
+    },
+    colaboradores: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Usuario"
+      }
+    ],
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const Proyecto = mongoose.model("Proyecto", proyectoSchema);
 
