@@ -33,7 +33,7 @@ const Login = () => {
           <input
             id="password"
             type="password"
-            placeholder="Contraseña de Registro"
+            placeholder="Contraseña"
             className="w-full mt-3 p-3 border rounded-lg bg-gray-50"
           />
         </div>

@@ -1,6 +1,52 @@
+import { useState } from 'react';
 import { Link, } from 'react-router-dom';
+import Alert from '../components/Alert'
 
 const Register = () => {
+  const [ name, setName ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ repetPassword, setRepetPassword ] = useState('');
+  const [ alert, setAlert ] = useState({});
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if([name, email, password, repetPassword].includes('')){
+      setAlert({
+        msg: 'Todos los campos son obligatorios',
+        error: true
+      })
+      return
+    }
+
+    if(password != repetPassword){
+      setAlert({
+        msg: 'Las contraseñas no coincden',
+        error: true
+      })
+      return
+    }
+
+    if(password.length < 8){
+      setAlert({
+        msg: 'La contraseña necesita minimo 8 caracteres',
+        error: true
+      })
+      return
+    }
+
+    setAlert({})
+    //Crear el usuario en la api
+    try {
+      
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
+  const { msg } = alert;
+
   return (
     <>
       <h1 className="text-sky-600 font-black text-6xl capitalize">
@@ -8,8 +54,13 @@ const Register = () => {
         <span className="text-slate-700"> proyectos</span>
       </h1>
 
-      <form className="my-10 bg-white shadow rounded-lg p-10">
-      <div className="my-5">
+      {msg && <Alert alert={alert} /> }
+
+      <form 
+        className="my-10 bg-white shadow rounded-lg p-10"
+        onSubmit={handleSubmit}
+      >
+        <div className="my-5">
           <label
             className="uppercase text-gray-600 block text-xl font-bold"
             htmlFor="name"
@@ -21,6 +72,8 @@ const Register = () => {
             type="text"
             placeholder="Nombre"
             className="w-full mt-3 p-3 border rounded-lg bg-gray-50"
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
         </div>
         <div className="my-5">
@@ -35,6 +88,8 @@ const Register = () => {
             type="email"
             placeholder="Email de Registro"
             className="w-full mt-3 p-3 border rounded-lg bg-gray-50"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
         <div className="my-5">
@@ -49,6 +104,8 @@ const Register = () => {
             type="password"
             placeholder="Contraseña de Registro"
             className="w-full mt-3 p-3 border rounded-lg bg-gray-50"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
         <div className="my-5">
@@ -63,6 +120,8 @@ const Register = () => {
             type="password"
             placeholder="Repetir Contraseña"
             className="w-full mt-3 p-3 border rounded-lg bg-gray-50"
+            value={repetPassword}
+            onChange={e => setRepetPassword(e.target.value)}
           />
         </div>
         <input
