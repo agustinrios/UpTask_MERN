@@ -10,6 +10,8 @@ const Register = () => {
   const [ repetPassword, setRepetPassword ] = useState('');
   const [ alert, setAlert ] = useState({});
 
+  const backUrl = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if([name, email, password, repetPassword].includes('')){
@@ -39,7 +41,7 @@ const Register = () => {
     setAlert({})
     //Crear el usuario en la api
     try {
-      const { data } = await axios.post('http://localhost:4000/api/usuarios', {
+      const { data } = await axios.post(`${backUrl}/api/usuarios`, {
         "nombre": name,
         "password": password,
         "email": email
@@ -49,6 +51,11 @@ const Register = () => {
         msg: data.msg,
         error: false
       });
+
+      setName('')
+      setEmail('')
+      setPassword('')
+      setRepetPassword('')
     } catch (error) {
       setAlert({
         msg: error.response.data.msg,
