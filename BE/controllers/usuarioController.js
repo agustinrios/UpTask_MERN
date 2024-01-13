@@ -1,7 +1,10 @@
 import Usuario from "../models/Usuario.js";
 import generarId from "../helpers/generarId.js";
 import generarJWT from "../helpers/generarJWT.js";
-import { emailRegister, } from '../helpers/email.js'
+import {
+  emailRegister,
+  emailForgotPassword,
+} from '../helpers/email.js'
 
 const registrar = async (req, res) => {
   //Evitar registros duplicados
@@ -89,6 +92,13 @@ const restaurarPassword = async (req, res) => {
     const error = new Error("El usuario no existe");
     return res.status(404).json({msg: error.message})
   }
+
+  //enviar mail
+  emailForgotPassword({
+    nombre: usuario.nombre,
+    email: usuario.email,
+    token: usuario.token,
+  });
 
   try {
     usuario.token = generarId();
