@@ -36,7 +36,7 @@ const ForgotPassword = () => {
           className="block text-center my-5 text-slate-500 uppercase text-sm"
           to="/"
         >
-          ¿Ya tienes cuenta? Inicia Sesión
+          ¿Ya tienes cuenta? Iniciar Sesión
         </Link>
         <Link
           className="block text-center my-5 text-slate-500 uppercase text-sm"

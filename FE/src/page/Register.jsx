@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, } from 'react-router-dom';
-import Alert from '../components/Alert';
+import Alert from '../components/Alert.jsx';
 import axios from 'axios';
 
 const Register = () => {
@@ -157,7 +157,7 @@ const Register = () => {
           className="block text-center my-5 text-slate-500 uppercase text-sm"
           to="/"
         >
-          ¿Ya tienes cuenta? Inicia Sesión
+          ¿Ya tienes cuenta? Iniciar Sesión
         </Link>
         <Link
           className="block text-center my-5 text-slate-500 uppercase text-sm"
