@@ -5,7 +5,7 @@ import Alert from '../components/Alert';
 
 const ConfirmAccount = () => {
   const params = useParams();
-  const { id } = params;
+  const { token } = params;
 
   const [ alert, setAlert ] = useState({});
   const [ cuentaConfirmada, setCuentaConfirmada ] = useState(false);
@@ -15,7 +15,7 @@ const ConfirmAccount = () => {
   useEffect(() => {
     const confirmarCuenta = async () => {
       try {
-        const url = `https://localhost:4000/api/usuarios/confirmar/${id}`
+        const url = `https://localhost:4000/api/usuarios/confirmar/${token}`
         const { data } = await axios.get(url)
 
         setAlert({
