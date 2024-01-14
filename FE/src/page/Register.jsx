@@ -62,7 +62,6 @@ const Register = () => {
         error: true
       });
     }
-    
   }
 
   const { msg } = alert;
