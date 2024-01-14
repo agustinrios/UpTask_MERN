@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, } from 'react-router-dom';
-import Alert from '../components/Alert.jsx';
-import axios from 'axios';
+import Alert from '../components/Alert';
+import clientAxios from '../config/ClientAxios';
 
 const Register = () => {
   const [ name, setName ] = useState('');
@@ -9,8 +9,6 @@ const Register = () => {
   const [ password, setPassword ] = useState('');
   const [ repetPassword, setRepetPassword ] = useState('');
   const [ alert, setAlert ] = useState({});
-
-  const backUrl = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +39,7 @@ const Register = () => {
     setAlert({})
     //Crear el usuario en la api
     try {
-      const { data } = await axios.post(`${backUrl}/api/usuarios`, {
+      const { data } = await clientAxios.post(`/usuarios`, {
         "nombre": name,
         "password": password,
         "email": email
