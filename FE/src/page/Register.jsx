@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, } from 'react-router-dom';
 import Alert from '../components/Alert';
-import clientAxios from '../config/ClientAxios';
+import backendURL from '../config/ClientAxios';
+import axios from 'axios'
 
 const Register = () => {
   const [ name, setName ] = useState('');
@@ -39,7 +40,7 @@ const Register = () => {
     setAlert({})
     //Crear el usuario en la api
     try {
-      const { data } = await clientAxios.post(`/usuarios`, {
+      const { data } = await  axios.post(`${backendURL}/usuarios`, {
         "nombre": name,
         "password": password,
         "email": email
@@ -71,7 +72,7 @@ const Register = () => {
         <span className="text-slate-700"> proyectos</span>
       </h1>
 
-      {msg && <Alert alert={alert} /> }
+      {msg && <Alert alert={alert} />}
 
       <form 
         className="my-10 bg-white shadow rounded-lg p-10"

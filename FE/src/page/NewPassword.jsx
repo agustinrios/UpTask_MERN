@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Alert from '../components/Alert';
-import clientAxios from '../config/ClientAxios';
+import backendURL from '../config/ClientAxios';
+import axios from 'axios'
 
 const NewPassword = () => {
   const params = useParams();
@@ -16,7 +17,7 @@ const NewPassword = () => {
   useEffect(() => {
     const confirmarToken = async () => {
       try {
-        await clientAxios(`/usuarios/restaurar-password/${token}`)
+        await axios(`${backendURL}/usuarios/restaurar-password/${token}`)
         setTokenValido(true)
 
       } catch (error) {
@@ -51,8 +52,8 @@ const NewPassword = () => {
     setAlert({})
 
     try {
-      const url = `/usuarios/restaurar-password/${token}`;
-      const { data } = await clientAxios.post(url, {
+      const url = `${backendURL}/usuarios/restaurar-password/${token}`;
+      const { data } = await axios.post(url, {
         "password": password,
       });
 
